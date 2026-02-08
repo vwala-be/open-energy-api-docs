@@ -80,7 +80,9 @@ You can also use the [API Reference](/api-reference) playground and set the API 
 
 ## Managing keys
 
-**List your keys** (replace `YOUR_SESSION_JWT` with a fresh JWT from the OTP flow):
+### List your keys
+
+Replace `YOUR_SESSION_JWT` with a fresh JWT from the OTP flow:
 
 ```bash
 curl -H "Authorization: Bearer YOUR_SESSION_JWT" \
@@ -89,7 +91,9 @@ curl -H "Authorization: Bearer YOUR_SESSION_JWT" \
 
 Only prefixes and metadata are shown; raw keys are never returned.
 
-**Revoke a key** (replace `YOUR_SESSION_JWT` and `KEY_UUID` with the key’s `uuid` from the list):
+### Revoke a key
+
+Replace `YOUR_SESSION_JWT` and `KEY_UUID` with the key’s `uuid` from the list:
 
 ```bash
 curl -X DELETE "https://open-energie.dev.api.vwala.be/api-keys/KEY_UUID" \
