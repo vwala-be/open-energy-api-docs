@@ -51,10 +51,9 @@
   "background": {
     "color": {
       "dark": "#06070E",
-      "light": "#EDEEFF"
+      "light": "#fff"
     }
   },
-  "logo": "/images/vwala_logo_transparent.png",
   "fonts": {
     "family": "Roboto"
   },
