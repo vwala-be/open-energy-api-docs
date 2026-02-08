@@ -35,7 +35,7 @@ The raw API key is returned **only once** when you create it. Store it securely;
 Send a one-time password to your email. Replace `your-email@example.com` with your email. You will need the returned `methodId` for the next step.
 
 ```bash
-curl -X POST "https://open-energie.dev.api.vwala.be/auth/otp/send" \
+curl -X POST "https://open-energie.api.vwala.be/auth/otp/send" \
   -H "Content-Type: application/json" \
   -d '{"email":"your-email@example.com"}'
 ```
@@ -47,7 +47,7 @@ You receive a `methodId` and a message. Check your inbox for the OTP code.
 Replace `YOUR_METHOD_ID` with the `methodId` from the response above, and `123456` with the code you received by email.
 
 ```bash
-curl -X POST "https://open-energie.dev.api.vwala.be/auth/otp/verify" \
+curl -X POST "https://open-energie.api.vwala.be/auth/otp/verify" \
   -H "Content-Type: application/json" \
   -d '{"methodId":"YOUR_METHOD_ID","code":"123456"}'
 ```
@@ -59,7 +59,7 @@ Copy the `sessionJwt` from the response. You will use it in the next step.
 Replace `YOUR_SESSION_JWT` with the `sessionJwt` from step 2.
 
 ```bash
-curl -X POST "https://open-energie.dev.api.vwala.be/api-keys" \
+curl -X POST "https://open-energie.api.vwala.be/api-keys" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_SESSION_JWT" \
   -d '{}'
@@ -73,7 +73,7 @@ Replace `YOUR_API_KEY` with the `key` you received in step 3. Example: list merc
 
 ```bash
 curl -H "x-api-key: YOUR_API_KEY" \
-  "https://open-energie.dev.api.vwala.be/v1/merchants"
+  "https://open-energie.api.vwala.be/v1/merchants"
 ```
 
 You can also use the [API Reference](/api-reference) playground and set the API key in the authorization options.
@@ -86,7 +86,7 @@ Replace `YOUR_SESSION_JWT` with a fresh JWT from the OTP flow:
 
 ```bash
 curl -H "Authorization: Bearer YOUR_SESSION_JWT" \
-  "https://open-energie.dev.api.vwala.be/api-keys"
+  "https://open-energie.api.vwala.be/api-keys"
 ```
 
 Only prefixes and metadata are shown; raw keys are never returned.
@@ -96,7 +96,7 @@ Only prefixes and metadata are shown; raw keys are never returned.
 Replace `YOUR_SESSION_JWT` and `KEY_UUID` with the key’s `uuid` from the list:
 
 ```bash
-curl -X DELETE "https://open-energie.dev.api.vwala.be/api-keys/KEY_UUID" \
+curl -X DELETE "https://open-energie.api.vwala.be/api-keys/KEY_UUID" \
   -H "Authorization: Bearer YOUR_SESSION_JWT"
 ```
 

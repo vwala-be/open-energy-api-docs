@@ -23,22 +23,18 @@
         "groups": [
           {
             "group": "API Reference",
-            "openapi": "https://open-energie.dev.api.vwala.be/docs/json"
+            "openapi": "https://open-energie.api.vwala.be/docs/json"
           }
         ]
       },
       {
         "tab": "Swagger",
-        "href": "https://open-energie.dev.api.vwala.be/docs"
-      },
-      {
-        "tab": "Energy browser",
-        "href": "https://open-energie.docs.vwala.be"
+        "href": "https://open-energie.api.vwala.be/docs"
       }
     ]
   },
   "api": {
-    "openapi": "https://open-energie.dev.api.vwala.be/docs/json",
+    "openapi": "https://open-energie.api.vwala.be/docs/json",
     "playground": {
       "display": "interactive"
     }
