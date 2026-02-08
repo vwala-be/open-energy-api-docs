@@ -1,15 +1,37 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Documentation",
+  "name": "Open Energie (by Vwala)",
   "colors": {
     "primary": "#0D9373"
   },
   "navigation": {
-    "groups": [
+    "tabs": [
       {
-        "group": "Getting Started",
-        "pages": []
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": ["introduction","getting-an-api-key"]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "API Reference",
+            "openapi": "https://open-energie.dev.api.vwala.be/docs/json"
+          }
+        ]
+      },
+      {
+        "tab": "Swagger",
+        "href": "https://open-energie.dev.api.vwala.be/docs"
+      },
+      {
+        "tab": "Energy browser",
+        "href": "https://open-energie.docs.vwala.be"
       }
     ]
   },

@@ -1,0 +1,99 @@
+---
+title: "Getting an API Key"
+description: "Create and manage API keys for the Open Energie API."
+---
+
+To use the API, you'll need an **API key**. Keys are created and managed via the API itself, after you verify ownership of your email address. This guide explains how authentication works and how to get your first API key.
+
+## How authentication works
+
+The API uses two separate mechanisms:
+
+| Purpose | Mechanism | Where it's used |
+|--------|------------|------------------|
+| **Data access** | API key in the `x-api-key` header | All data endpoints (merchants, products, distribution costs, excise duties) |
+| **Key management** | Bearer JWT (session token) | Creating, listing, and revoking API keys only |
+
+You cannot create or list API keys with the API key itself. Key management is protected by **email verification**: you receive a one-time password (OTP) by email, then exchange it for a short-lived **session JWT** (expires in 10 minutes). With that JWT you call the API key endpoints to create or revoke keys. 
+
+Once you have obtained an API key, you use it in the `x-api-key` header for all data-related API calls. API keys currently never expire, but you can revoke them at any time.
+
+In short:
+
+1. **Verify your email** → get a session JWT (used only for key management).
+2. **Use the session JWT** → create (or list/revoke) API keys.
+3. **Use the API key** → call merchants, products, distribution costs, excise duties, etc.
+
+<Info>
+The raw API key is returned **only once** when you create it. Store it securely; you cannot retrieve it again. For identification, listed keys show only a prefix.
+</Info>
+
+## Step-by-step guide
+
+### Step 1: Request an OTP
+
+Send a one-time password to your email. Replace `your-email@example.com` with your email. You will need the returned `methodId` for the next step.
+
+```bash
+curl -X POST "https://open-energie.dev.api.vwala.be/auth/otp/send" \
+  -H "Content-Type: application/json" \
+  -d '{"email":"your-email@example.com"}'
+```
+
+You receive a `methodId` and a message. Check your inbox for the OTP code.
+
+### Step 2: Verify the OTP and get a session JWT
+
+Replace `YOUR_METHOD_ID` with the `methodId` from the response above, and `123456` with the code you received by email.
+
+```bash
+curl -X POST "https://open-energie.dev.api.vwala.be/auth/otp/verify" \
+  -H "Content-Type: application/json" \
+  -d '{"methodId":"YOUR_METHOD_ID","code":"123456"}'
+```
+
+Copy the `sessionJwt` from the response. You will use it in the next step.
+
+### Step 3: Create an API key
+
+Replace `YOUR_SESSION_JWT` with the `sessionJwt` from step 2.
+
+```bash
+curl -X POST "https://open-energie.dev.api.vwala.be/api-keys" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_SESSION_JWT" \
+  -d '{}'
+```
+
+**Copy and store the `key` value from the response now**, this is your API key. It is not shown again.
+
+### Step 4: Use the API key
+
+Replace `YOUR_API_KEY` with the `key` you received in step 3. Example: list merchants.
+
+```bash
+curl -H "x-api-key: YOUR_API_KEY" \
+  "https://open-energie.dev.api.vwala.be/v1/merchants"
+```
+
+You can also use the [API Reference](/api-reference) playground and set the API key in the authorization options.
+
+## Managing keys
+
+**List your keys** (replace `YOUR_SESSION_JWT` with a fresh JWT from the OTP flow):
+
+```bash
+curl -H "Authorization: Bearer YOUR_SESSION_JWT" \
+  "https://open-energie.dev.api.vwala.be/api-keys"
+```
+
+Only prefixes and metadata are shown; raw keys are never returned.
+
+**Revoke a key** (replace `YOUR_SESSION_JWT` and `KEY_UUID` with the key’s `uuid` from the list):
+
+```bash
+curl -X DELETE "https://open-energie.dev.api.vwala.be/api-keys/KEY_UUID" \
+  -H "Authorization: Bearer YOUR_SESSION_JWT"
+```
+
+The key will stop working immediately. To create or revoke more keys later, repeat steps 1–2 to get a fresh session JWT, then run the commands above.
