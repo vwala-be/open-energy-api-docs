@@ -3,7 +3,9 @@
   "theme": "mint",
   "name": "Open Energie (by Vwala)",
   "colors": {
-    "primary": "#0D9373"
+    "primary": "#5630D2",
+    "light": "#715BF9",
+    "dark": "#25184E"
   },
   "navigation": {
     "tabs": [
@@ -40,5 +42,41 @@
     "playground": {
       "display": "interactive"
     }
+  },
+  "favicon": "/images/vwala.png",
+  "appearance": {
+    "strict": true,
+    "default": "light"
+  },
+  "background": {
+    "color": {
+      "dark": "#06070E",
+      "light": "#EDEEFF"
+    }
+  },
+  "logo": "/images/vwala_logo_transparent.png",
+  "fonts": {
+    "family": "Roboto"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Vwala",
+        "href": "https://www.vwala.be"
+      }
+    ]
+  },
+  "footer": {
+    "socials": {
+      "website": "https://www.vwala.be",
+      "instagram": "https://www.instagram.com/vwala_be/",
+      "linkedin": "https://www.linkedin.com/company/vwala"
+    }
+  },
+  "styling": {
+    "codeblocks": "dark"
+  },
+  "icons": {
+    "library": "fontawesome"
   }
 }
