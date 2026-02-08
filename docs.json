@@ -74,5 +74,6 @@
   },
   "icons": {
     "library": "fontawesome"
-  }
+  },
+  "logo": "/images/LogoOpenEnergie.png"
 }
