@@ -28,6 +28,10 @@
         ]
       },
       {
+        "tab": "Playground",
+        "href": "https://open-energie.vwala.be"
+      },
+      {
         "tab": "Swagger",
         "href": "https://open-energie.api.vwala.be/docs"
       }
