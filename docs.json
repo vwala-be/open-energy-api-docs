@@ -14,7 +14,7 @@
         "groups": [
           {
             "group": "Getting Started",
-            "pages": ["introduction","getting-an-api-key"]
+            "pages": ["introduction","getting-an-api-key", "endpoint"]
           }
         ]
       },
